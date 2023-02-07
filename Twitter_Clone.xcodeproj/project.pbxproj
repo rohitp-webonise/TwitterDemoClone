@@ -60,8 +60,8 @@
 		16B7C2FA2988E2E600E290DF /* NotificationFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B7C2F92988E2E600E290DF /* NotificationFilterView.swift */; };
 		16B7C2FC2988E4F100E290DF /* NotificationFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B7C2FB2988E4F100E290DF /* NotificationFilterViewModel.swift */; };
 		16B7C2FE2988F2E700E290DF /* NotificationsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B7C2FD2988F2E700E290DF /* NotificationsModel.swift */; };
-		16B7C3002989015300E290DF /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B7C2FF2989015300E290DF /* NotificationService.swift */; };
 		16B91238298101140039850B /* MainMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B91237298101140039850B /* MainMessageViewModel.swift */; };
+		16BB48D52990D25C00D1936A /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BB48D42990D25C00D1936A /* NotificationsViewModel.swift */; };
 		16EF823F297A7A5E00EDDC07 /* ProfilePhotoSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EF823E297A7A5E00EDDC07 /* ProfilePhotoSelectorView.swift */; };
 		16EF8242297A856A00EDDC07 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EF8241297A856900EDDC07 /* ImagePicker.swift */; };
 		16EF8244297A96CC00EDDC07 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16EF8243297A96CC00EDDC07 /* ImageUploader.swift */; };
@@ -118,8 +118,8 @@
 		16B7C2F92988E2E600E290DF /* NotificationFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationFilterView.swift; sourceTree = "<group>"; };
 		16B7C2FB2988E4F100E290DF /* NotificationFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationFilterViewModel.swift; sourceTree = "<group>"; };
 		16B7C2FD2988F2E700E290DF /* NotificationsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsModel.swift; sourceTree = "<group>"; };
-		16B7C2FF2989015300E290DF /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Noti\U0010ficationService.swift"; sourceTree = "<group>"; };
 		16B91237298101140039850B /* MainMessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMessageViewModel.swift; sourceTree = "<group>"; };
+		16BB48D42990D25C00D1936A /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
 		16EF823E297A7A5E00EDDC07 /* ProfilePhotoSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoSelectorView.swift; sourceTree = "<group>"; };
 		16EF8241297A856900EDDC07 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		16EF8243297A96CC00EDDC07 /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
@@ -316,7 +316,6 @@
 				16EF8243297A96CC00EDDC07 /* ImageUploader.swift */,
 				16AFCF38297E53FE00DB8D12 /* UserService.swift */,
 				16AFCF44297E71B300DB8D12 /* TweetService.swift */,
-				16B7C2FF2989015300E290DF /* NotificationService.swift */,
 			);
 			path = " Service";
 			sourceTree = "<group>";
@@ -470,6 +469,7 @@
 			children = (
 				16B7C2FB2988E4F100E290DF /* NotificationFilterViewModel.swift */,
 				16B7C2FD2988F2E700E290DF /* NotificationsModel.swift */,
+				16BB48D42990D25C00D1936A /* NotificationsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -629,7 +629,6 @@
 				168E59FA2979327100D8B1CA /* SideMenuView.swift in Sources */,
 				16A1EF642983AB00009ACF10 /* RecentMessage.swift in Sources */,
 				16B7C2FE2988F2E700E290DF /* NotificationsModel.swift in Sources */,
-				16B7C3002989015300E290DF /* NotificationService.swift in Sources */,
 				168E59E0297931DA00D8B1CA /* TweetsRowView.swift in Sources */,
 				165819922981409D00E41A6A /* CreateNewMessageView.swift in Sources */,
 				16AFCF49297E773300DB8D12 /* FeedViewModel.swift in Sources */,
@@ -640,6 +639,7 @@
 				16B7C2FC2988E4F100E290DF /* NotificationFilterViewModel.swift in Sources */,
 				16EF823F297A7A5E00EDDC07 /* ProfilePhotoSelectorView.swift in Sources */,
 				168E59EA2979321500D8B1CA /* NewTweetView.swift in Sources */,
+				16BB48D52990D25C00D1936A /* NotificationsViewModel.swift in Sources */,
 				168E59E4297931E300D8B1CA /* UserRowView.swift in Sources */,
 				168E59DC297931CF00D8B1CA /* CustomInputField.swift in Sources */,
 				168E59EE2979322F00D8B1CA /* TweetFilterViewModel.swift in Sources */,

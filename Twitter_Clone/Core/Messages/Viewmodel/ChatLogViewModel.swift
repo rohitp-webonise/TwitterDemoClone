@@ -93,6 +93,7 @@ class ChatLogViewModel:ObservableObject{
                 return
             }
             print("DEBUG: Successfully saved recipient message")
+           self.persistRecentMessage()
         }
     }
     

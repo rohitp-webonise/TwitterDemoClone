@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct NotificationsView: View {
     @State private var selectedFilter:NotificationFilterViewModel = .all
+    @ObservedObject var viewModel = NotificationsViewModel()
+    let service = TweetService()
     @Namespace var animation
     var body: some View {
         VStack{
@@ -61,38 +64,39 @@ extension NotificationsView{
     }
     
     var Notifications:some View{
+       
         ScrollView{
             VStack{
-                ForEach(0..<10,id: \.self){_ in
+                ForEach(viewModel.notifications){notification in
                     VStack(alignment:.leading)
                     {
                         //Profile image + userInfo + Tweet
                             HStack(alignment: .top, spacing: 12){
-                                Circle()
+                                KFImage(URL(string: notification.profileImageUrl))
+                                    .resizable()
                                     .scaledToFill()
                                     .clipShape(Circle())
-                                    .frame(width: 35, height: 35)
+                                    .frame(width: 56, height: 56)
                                 
                                 //User Info and Tweet Caption
                                 VStack(alignment:.leading,spacing: 4){
                                     //User info
-                                    HStack{
-                                        Text("@hitman")
-                                            .font(.subheadline).bold()
+                                    HStack(spacing:10){
+                                        Text(notification.fullname)
+                                            .font(.caption).bold()
                                        
                                         Text("Likes your tweet.")
-                                        
+                                            .font(.caption2)
                                         Spacer()
                                         
                                         Text("2m ago")
                                             .foregroundColor(.gray)
                                             .font(.caption)
-                                    }
-
+                                    }.padding()
                                 }
                             }
                         Divider()
-                    }.padding()
+                    }.padding(10)
                 }
             }
         }

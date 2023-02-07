@@ -6,12 +6,16 @@
 //
 
 import Foundation
+import SwiftUI
 import Firebase
 
 
 
 
 struct TweetService{
+    private let service = UserService()
+    let vm = AuthViewModel()
+    var currentUser:User?
     func uploadTweet(caption:String , completion:@escaping(Bool)->Void){
         guard let uid = Auth.auth().currentUser?.uid else { return }
             
@@ -55,25 +59,26 @@ struct TweetService{
 }
 // MARK: - Likes and Unlikes
 extension TweetService{
-    func likeTweet(_ tweet:Tweet,completion:@escaping(Bool)->Void){
+    mutating func likeTweet(_ tweet:Tweet,completion:@escaping(Bool)->Void){
+        var notificationArray = [NotifcationsModel]()
         guard let uid = Auth.auth().currentUser?.uid else { return }
         guard let tweetId = tweet.id else { return }
-        
+        let user = vm.currentUser
+ 
         let userLikesRef = Firestore.firestore().collection("users").document(uid).collection("user-likes")
-        print("DEBUG: \(uid) - Likes tweet of \(tweet.user?.id) and profileimageurl = \(tweet.user?.profileImageUrl)")
         Firestore.firestore().collection("tweets").document(tweetId)
             .updateData(["likes":tweet.likes+1]){_ in
                 userLikesRef.document(tweetId).setData([:]) { _ in
                    completion(true)
                 }
             }
-
+        
         let currentUserNotification = Firestore.firestore().collection("Notifications")
             .document(uid)
-            .collection(tweet.uid)
-            .document()
+//           .collection(tweet.uid)
+//            .document()
 
-        let notificationData = NotifcationsModel(id: nil, fullname: tweet.user?.fullname ?? "", fromId: uid, toId: tweet.uid, tweetId: tweetId, profileImageUrl: tweet.user?.profileImageUrl ?? "", timestamp: Timestamp.init(date: Date()))
+        let notificationData = NotifcationsModel(id: nil, fullname: user?.fullname ?? "", fromId: uid, toId: tweet.uid, tweetId: tweetId, profileImageUrl:user?.profileImageUrl ?? "", timestamp: Timestamp.init(date: Date()))
 
         try? currentUserNotification.setData(from:notificationData){ error in
             if let error = error{
@@ -82,7 +87,12 @@ extension TweetService{
             }
             print("DEBUG: Successfully saved current user NotificationData")
         }
+        fetchNotification() { snap in
+            notificationArray = snap
+        }
 
+        
+       
 
     }
     
@@ -133,5 +143,24 @@ extension TweetService{
                     }
             }
         }
+    }
+    
+    func fetchNotification(completion:@escaping([NotifcationsModel])->Void){
+        var notifications = [NotifcationsModel]()
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let user = vm.currentUser
+      
+       
+        Firestore.firestore().collection("Notifications")
+            .document(uid)
+           // .whereField("uid", isNotEqualTo: uid)
+            .getDocument { snapshot, _ in
+                guard let snapshot = snapshot else { return }
+                
+                guard let notification = try? snapshot.data(as: NotifcationsModel.self) else { return }
+               print("DEBUG : NotificationData = \(notification)")
+                notifications.append(notification)
+                completion(notifications)
+            }
     }
 }
